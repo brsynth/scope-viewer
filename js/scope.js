@@ -17,7 +17,7 @@ $(function(){
         var file = document.getElementById("jsonFile").files[0];
         var filename = file.name;
         var basename = getBasename(filename);
-        
+
         reader.readAsText(file);
         reader.onload = function (event)
         {
@@ -32,7 +32,7 @@ $(function(){
             MakeReactionLabels();
             MakeCompoundLabels();
 
-            /* 
+            /*
             Color scheme:
                 red: #B22222
                 blue: #235789
@@ -138,7 +138,7 @@ $(function(){
                 {
                     putCompoundInfo(node);
                 }
-                
+
                 // Show transformation info
                 if (node.is('[type = "reaction"]'))
                 {
@@ -153,7 +153,7 @@ $(function(){
                     putDefaultInfo();
                 }
             });
-            
+
             cy.on('layoutstop', function(e){
                 cy.minZoom(cy.zoom());
                 putDefaultInfo();
@@ -174,7 +174,7 @@ $(function(){
                 //edgeLength: 300,
                 //infinite: true,
             //});
-        
+
         };
     };
 
@@ -198,7 +198,7 @@ $(function(){
             var cnode = cnodes[i];
             var allnames = cnode.data('Names');
             var cname = allnames[0];
-            if ((typeof cname != 'undefined') 
+            if ((typeof cname != 'undefined')
                 && (cname != 'None')
                 && (cname != ''))
             {
@@ -208,7 +208,7 @@ $(function(){
                 } else {
                     shortname = cname;
                 }
-                
+
             } else {
                 shortname = '';
             }
@@ -229,7 +229,7 @@ $(function(){
             LoadOneImage(files[i]);
         }
     }
-    
+
     function LoadOneImage(file)
     {
         var filename = file.name;
@@ -263,16 +263,16 @@ $(function(){
     function putDefaultInfo()
     {
         var text = [];
-        
+
         // Legend part
         text.push('<div class="info-title">');
         text.push('Legend');
         text.push('</div>');
-        
+
         text.push('<div class="help-tip">');
         text.push('Click on a node to visualize information on it');
         text.push('</div>');
-        
+
         text.push('<div class="info-subtitle">');
         text.push('Node shape');
         text.push('</div>');
@@ -280,7 +280,7 @@ $(function(){
         text.push('<p><span class="symbol-compound">&#9634;</span> Compound</p>');
         text.push('<p><span class="symbol-transformation">&#9711;</span> Transformation (in/outgoing arrows show direction)</p>');
         text.push('</div>');
-        
+
         text.push('<div class="info-subtitle">');
         text.push('Compound color');
         text.push('</div>');
@@ -289,12 +289,12 @@ $(function(){
         text.push('<p><span class="symbol-compound symbol-inter-color">&#9634;</span> Intermediate</p>');
         text.push('<p><span class="symbol-compound symbol-sink-color">&#9634;</span> Sink</p>');
         text.push('</div>');
-        
+
         // Loading data part
         text.push('<div class="info-title">');
         text.push('Loading data');
         text.push('</div>');
-        
+
         // How to load data
         text.push('<div class="info-subtitle">');
         text.push('Loading scope');
@@ -313,7 +313,7 @@ $(function(){
         text.push('<span class="symbol-tick">&#8627;</span>');
         text.push('The output folder path is set in the workflow ("Output configuration" metanode, "output dir path" input).');
         text.push('</div>');
-        
+
         text.push('</div>');
         text.push('<div class="info-subtitle">');
         text.push('Loading depiction of compounds:');
@@ -332,15 +332,15 @@ $(function(){
         text.push('SVG files are located in the "svg" subfolder of the output folder.');
         text.push('</div>');
         text.push('</div>');
-        
+
         // Add all info to html page
         $('#info').html(text.join('\n'));
     }
 
     function putCompoundInfo(node){
-        
+
         var text = []
-        
+
         // Get compound info
         var allnames = node.data('Names');
         var svg = node.data('img');
@@ -370,7 +370,7 @@ $(function(){
             }
         }
         text.push('</div>');
-        
+
         // Spacer
         text.push('<div class="spacer">');
         text.push('</div>');
@@ -414,7 +414,7 @@ $(function(){
         text.push('</a>');
         text.push('</div>');
         text.push('</div>');
-        
+
         // InChI
         text.push('<div class="inchi">');
         text.push('<div class="info-subtitle">');
@@ -429,7 +429,7 @@ $(function(){
         text.push('</a>');
         text.push('</div>');
         text.push('</div>');
-        
+
         // InChIKey
         text.push('<div class="inchikey">');
         text.push('<div class="info-subtitle">');
@@ -444,7 +444,7 @@ $(function(){
         text.push('</a>');
         text.push('</div>');
         text.push('</div>');
-        
+
         // Add all info to html page
         $('#info').html(text.join('\n'));
 
@@ -452,11 +452,11 @@ $(function(){
         $('#info > div.img-box > div.img').css('background-image', "url('" + svg + "')");
 
     }
-    
+
     function putTransformationInfo(node){
-        
+
         var text = [];
-        
+
         // Get transformation info
         var trs_id = node.data('id');
         var rule_ids = node.data('Rule ID');
@@ -465,21 +465,21 @@ $(function(){
         var diameter = node.data('Diameter');
         var score = node.data('Score');
         var iteration = node.data('Iteration');
-        
+
         // Info title
         text.push('<div class="info-title">');
         text.push('Transformation');
         text.push('</div>');
-        
+
         // Transformation ID
         text.push('<div class="info-name">');
         text.push(trs_id);
         text.push('</div>');
-        
+
         // Spacer
         text.push('<div class="spacer">');
         text.push('</div>');
-        
+
         // Rule IDs (and links of appropriate)
         rule_ids = rule_ids.sort();
         text.push('<div class="trs-rule-ids">');
@@ -499,11 +499,11 @@ $(function(){
                 text.push(arule_id);
                 text.push('<br>');
             }
-            
+
         }
         text.push('</div>');
         text.push('</div>');
-        
+
         // Set EC numbers
         ec_numbers = ec_numbers.sort();
         text.push('<div class="ec-numbers">');
@@ -517,7 +517,7 @@ $(function(){
         }
         text.push('</div>');
         text.push('</div>');
-        
+
         text.push('<div class="three-cols">');
         // Set Diameter
         text.push('<div class="diameter">');
@@ -528,7 +528,7 @@ $(function(){
         text.push(diameter);
         text.push('</div>');
         text.push('</div>');
-        
+
         // Set Score
         text.push('<div class="score">');
         text.push('<div class="info-subtitle">');
@@ -538,7 +538,7 @@ $(function(){
         text.push(score);
         text.push('</div>');
         text.push('</div>');
-        
+
         // Set Iteration
         text.push('<div class="iteration">');
         text.push('<div class="info-subtitle">');
@@ -548,7 +548,7 @@ $(function(){
         text.push(iteration);
         text.push('</div>');
         text.push('</div>');
-        
+
         text.push('</div');
         
         // Set Reaction SMILES
@@ -558,6 +558,16 @@ $(function(){
         text.push('</div>');
         text.push('<div class="raw-text">');
         text.push(rsmiles);
+        text.push('</div>');
+
+        // Crosslink to Selenzyme
+        text.push('<div class="selenzyme">');
+        text.push('<div class="info-subtitle">');
+        text.push('Enzyme selection');
+        text.push('</div>');
+        text.push('<div class="raw-text">');
+        text.push('<a target="_blank" href="http://selenzyme.synbiochem.co.uk/results?smarts=' + encodeURIComponent( rsmiles ) + '">' + 'Crosslink to Selenzyme' + '</a>');
+        text.push('</div>');
         text.push('</div>');
         text.push('</div>');
 
