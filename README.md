@@ -7,6 +7,10 @@ RetroPath2.0 is a retrosynthesis tool to build a reaction network
 from a set of source compounds to a set of sink compounds. More details on
 RetroPath2.0 at [https://www.myexperiment.org/workflows/4987.html](https://www.myexperiment.org/workflows/4987.html)).
 
+### Dev
+
+In dev version allows for visualization of biological and chemical scores.
+
 ### Installation
 
 Just download the complete repository.

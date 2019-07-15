@@ -186,7 +186,11 @@ $(function(){
             var rnode = rnodes[i];
             var all_ecs = rnode.data('EC number');
             var first_ec = all_ecs.sort()[0];
+            var score_short = rnode.data('Score').toFixed(3);
+            var chem_score_short = rnode.data('ChemicalScore').toFixed(3);
             rnode.data('ec', first_ec);
+            rnode.data('score_short', score_short);
+            rnode.data('chem_score_short', chem_score_short);
         }
     }
 
@@ -463,7 +467,8 @@ $(function(){
         var ec_numbers = node.data('EC number');
         var rsmiles = node.data('Reaction SMILES');
         var diameter = node.data('Diameter');
-        var score = node.data('Score');
+        var score = node.data('score_short');
+        var chem_score = node.data('chem_score_short');
         var iteration = node.data('Iteration');
 
         // Info title
@@ -532,10 +537,20 @@ $(function(){
         // Set Score
         text.push('<div class="score">');
         text.push('<div class="info-subtitle">');
-        text.push('Rule score:');
+        text.push('Biological score:');
         text.push('</div>');
         text.push('<div class="raw-text">');
         text.push(score);
+        text.push('</div>');
+        text.push('</div>');
+
+        // Set Score
+        text.push('<div class="score">');
+        text.push('<div class="info-subtitle">');
+        text.push('Chemical score:');
+        text.push('</div>');
+        text.push('<div class="raw-text">');
+        text.push(chem_score);
         text.push('</div>');
         text.push('</div>');
 
@@ -550,7 +565,7 @@ $(function(){
         text.push('</div>');
 
         text.push('</div');
-        
+
         // Set Reaction SMILES
         text.push('<div class="description">');
         text.push('<div class="info-subtitle">');
