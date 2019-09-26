@@ -1,15 +1,13 @@
-# scope-viewer -- Simple viewer for RetroPath2.0 results
+# scope-viewer -- Simple viewer for RetroPath suite results
 
 The scope viewer provides a simple interface to consult metabolic graph
-such as the scope graph outputted by RetroPath2.0.
+such as the scope graph outputted by RetroPath2.0 and RetroPath3.0.
 
-RetroPath2.0 is a retrosynthesis tool to build a reaction network
-from a set of source compounds to a set of sink compounds. More details on
-RetroPath2.0 at [https://www.myexperiment.org/workflows/4987.html](https://www.myexperiment.org/workflows/4987.html)).
+RetroPath tools are retrosynthesis tools to build reaction networks
+from a set of source compounds to a set of sink compounds. More details:
 
-### Dev
-
-In dev version allows for visualization of biological and chemical scores.
+- RetroPath2.0 at [https://www.myexperiment.org/workflows/4987.html](https://www.myexperiment.org/workflows/4987.html)
+- RetroPath3.0 at [https://github.com/brsynth/RetroPath3](https://github.com/brsynth/RetroPath3)
 
 ### Installation
 
@@ -33,3 +31,8 @@ Just download the complete repository.
 
 - In case the scope viewer become unresponsive -- which is possible when trying
 to load a second scope file -- refresh the HTML page.
+
+## Release
+
+- 20190926: adding compatibility with RetroPath3.0 (optional chemical score)
+- 20170524: first release for RetroPath2.0
