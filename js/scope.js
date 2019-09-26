@@ -187,7 +187,14 @@ $(function(){
             var all_ecs = rnode.data('EC number');
             var first_ec = all_ecs.sort()[0];
             var score_short = rnode.data('Score').toFixed(3);
-            var chem_score_short = rnode.data('ChemicalScore').toFixed(3);
+            if (typeof rnode.data('ChemicalScore') !== 'undefined')  // Only with rp3
+            {
+                var chem_score_short = rnode.data('ChemicalScore').toFixed(3);
+            }
+            else
+            {
+                var chem_score_short = 'NA';
+            }
             rnode.data('ec', first_ec);
             rnode.data('score_short', score_short);
             rnode.data('chem_score_short', chem_score_short);
@@ -523,7 +530,7 @@ $(function(){
         text.push('</div>');
         text.push('</div>');
 
-        text.push('<div class="three-cols">');
+        text.push('<div class="two-cols">');
         // Set Diameter
         text.push('<div class="diameter">');
         text.push('<div class="info-subtitle">');
@@ -533,27 +540,6 @@ $(function(){
         text.push(diameter);
         text.push('</div>');
         text.push('</div>');
-
-        // Set Score
-        text.push('<div class="score">');
-        text.push('<div class="info-subtitle">');
-        text.push('Biological score:');
-        text.push('</div>');
-        text.push('<div class="raw-text">');
-        text.push(score);
-        text.push('</div>');
-        text.push('</div>');
-
-        // Set Score
-        text.push('<div class="score">');
-        text.push('<div class="info-subtitle">');
-        text.push('Chemical score:');
-        text.push('</div>');
-        text.push('<div class="raw-text">');
-        text.push(chem_score);
-        text.push('</div>');
-        text.push('</div>');
-
         // Set Iteration
         text.push('<div class="iteration">');
         text.push('<div class="info-subtitle">');
@@ -563,8 +549,28 @@ $(function(){
         text.push(iteration);
         text.push('</div>');
         text.push('</div>');
+        text.push('</div>');
 
-        text.push('</div');
+        text.push('<div class="two-cols">');
+        // Set biological score (standard)
+        text.push('<div class="score">');
+        text.push('<div class="info-subtitle">');
+        text.push('Biological score:');
+        text.push('</div>');
+        text.push('<div class="raw-text">');
+        text.push(score);
+        text.push('</div>');
+        text.push('</div>');
+        // Set chemical score (optional)
+        text.push('<div class="score">');
+        text.push('<div class="info-subtitle">');
+        text.push('Chemical score:');
+        text.push('</div>');
+        text.push('<div class="raw-text">');
+        text.push(chem_score);
+        text.push('</div>');
+        text.push('</div>');
+        text.push('</div>');
 
         // Set Reaction SMILES
         text.push('<div class="description">');
@@ -578,7 +584,7 @@ $(function(){
         // Crosslink to Selenzyme
         text.push('<div class="selenzyme">');
         text.push('<div class="info-subtitle">');
-        text.push('Enzyme selection');
+        text.push('Enzyme selection:');
         text.push('</div>');
         text.push('<div class="raw-text">');
         text.push('<a target="_blank" href="http://selenzyme.synbiochem.co.uk/results?smarts=' + encodeURIComponent( rsmiles ) + '">' + 'Crosslink to Selenzyme' + '</a>');

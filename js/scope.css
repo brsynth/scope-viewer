@@ -248,6 +248,20 @@ body {
     padding-top: 0%;
 }
 
+#info > div.two-cols {
+    display: flex;
+    padding-top: 5%;
+    align-items: flex-end;
+}
+
+#info > div.two-cols > div {
+    flex-basis: 100%;
+}
+
+#info > div.two-cols div.info-subtitle {
+    padding-top: 0%;
+}
+
 #info > div.smiles .link,
 #info > div.inchi .link,
 #info > div.inchikey .link {
